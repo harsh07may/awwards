@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import Button from "./Button";
+import { TiLocationArrow } from "react-icons/ti";
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -8,17 +10,15 @@ const Hero = () => {
 
   const totoalVideos = 4;
   const nextVideoRef = useRef(null);
+  const upccomingVideoIndex = (currentIndex % totoalVideos) + 1;
 
   const handleVideoLoaded = () => {
     setLoadedVideos((prev) => prev + 1);
   };
-  const upccomingVideoIndex = (currentIndex % totoalVideos) + 1;
-
   const handleMiniVideoClick = () => {
     setHasClicked(true);
     setCurrentIndex(upccomingVideoIndex);
   };
-
   const getVideoSrc = (index: number) => {
     return `/videos/hero-${index}.mp4`;
   };
@@ -63,7 +63,7 @@ const Hero = () => {
             src={getVideoSrc(
               currentIndex === totoalVideos - 1 ? 1 : currentIndex
             )}
-            autoPlay
+            // autoPlay
             loop
             muted
             className="absolute left-0 top-0 size-full object-cover object-center"
@@ -84,9 +84,21 @@ const Hero = () => {
               <br />
               Unleash the Play Economy
             </p>
+            <Button
+              id="watch-trailer"
+              title="Watch Trailer"
+              leftIcon={<TiLocationArrow />}
+              className="bg-white text-black px-5 py-2 rounded-lg"
+            >
+              Hello
+            </Button>
           </div>
         </div>
       </div>
+
+      <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 text-black">
+        G<b>a</b>ming
+      </h1>
     </div>
   );
 };
